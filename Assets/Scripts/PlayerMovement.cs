@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
             //Get the move Vector (if no collision)
             if (moveX != 0)
             {
-                print(characterTransform.position);
+                //print(characterTransform.position);
                 //Checking the collisions
                 if ((moveX > 0 && !collisionSides.Contains("right")) || (moveX < 0 && !collisionSides.Contains("left")))
                 {
@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
                     moveDirection = new Vector2(moveX, moveY);
                     moving = true;
+                    print("moving passe à true");
 
                     collisionSides.Clear();
 
@@ -66,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
                     moveDirection = new Vector2(moveX, moveY);
                     moving = true;
+                    print("moving passe à true");
 
                     collisionSides.Clear();
 
@@ -122,10 +124,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (blocked)
         {
-            //print("BOOM");
+            print("BOOM");
             moveDirection = new Vector2(0, 0);
             rb.velocity = moveDirection;
-            moving = false;
+            //moving = false;
 
             foreach (Collider2D collider in colliders)
             {
@@ -154,6 +156,17 @@ public class PlayerMovement : MonoBehaviour
                     //print("right");
                 }
             }
+            //Lock the character from moving for a few frames
+            StartCoroutine(WaitAndUnlock(0.001f));
         }
+    }
+
+    //Wait for some time then allow the player to move the character again
+    IEnumerator WaitAndUnlock(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        moving = false;
+        print("moving passe à false");
+        //print("unlock");
     }
 }
