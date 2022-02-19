@@ -53,7 +53,9 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Levels\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Level_Selector\pinPointScript.cs" />
+    <Compile Include="Assets\Scripts\Level_Selector\cursorBehaviour.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
