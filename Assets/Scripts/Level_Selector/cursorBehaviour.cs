@@ -6,9 +6,11 @@ public class cursorBehaviour : MonoBehaviour
 
 {
     public Rigidbody2D rb;
-    public SpriteRenderer spriteRenderer;
-    public Transform thisTransform;
-    public GameObject cursor;
+    //public SpriteRenderer spriteRenderer;
+    //public Transform thisTransform;
+    //public UIManager UIManager;
+    public GameObject UIManager;
+    public GameObject levelSelect;
     //This list doesn't contain the actual levels but their scripts
     private List<pinPointScript> levels = new List<pinPointScript>();
     private bool moving = false;
@@ -16,7 +18,6 @@ public class cursorBehaviour : MonoBehaviour
     private Vector2 moveDirection;
     public float moveSpeed;
     private Vector2 destination;
-    //public bool almostArrived = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +38,10 @@ public class cursorBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ProcessInputs();
+        if (Time.timeScale == 1)
+        {
+            ProcessInputs();
+        }
     }
 
     void ProcessInputs()
@@ -90,6 +94,10 @@ public class cursorBehaviour : MonoBehaviour
                 }
             } else if (Input.GetKey("space")) {
                 print("On ouvre le menu du monde " + cursorOnLevel.world);
+                //Displaying the UI
+                Time.timeScale = 0;
+                UIManager.GetComponent<UIManager>().setWorldId(cursorOnLevel.world);
+                UIManager.GetComponent<UIManager>().showPaused();
             }
 
         }
