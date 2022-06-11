@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
                     moveDirection = new Vector2(moveX, moveY);
                     moving = true;
-                    print("moving passe à true");
+                    //print("moving passe à true");
 
                     collisionSides.Clear();
 
@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
                     moveDirection = new Vector2(moveX, moveY);
                     moving = true;
-                    print("moving passe à true");
+                    //print("moving passe à true");
 
                     collisionSides.Clear();
 
@@ -90,6 +90,8 @@ public class PlayerMovement : MonoBehaviour
 
         float positionX = Convert.ToSingle(Math.Round(rb.position.x * 2, MidpointRounding.AwayFromZero) / 2);
         float positionY = Convert.ToSingle(Math.Round(rb.position.y * 2, MidpointRounding.AwayFromZero) / 2);
+
+        print(rb.position);
 
         bool blocked = false;
         float contactPosition = -100f;
@@ -124,10 +126,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (blocked)
         {
-            print("BOOM");
+            //print("BOOM");
             moveDirection = new Vector2(0, 0);
             rb.velocity = moveDirection;
+            transform.position = new Vector3(positionX, positionY, 0f);
             //moving = false;
+            //rb.position.Set(positionX, positionY);
 
             foreach (Collider2D collider in colliders)
             {
@@ -157,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
             //Lock the character from moving for a few frames
-            StartCoroutine(WaitAndUnlock(0.001f));
+            StartCoroutine(WaitAndUnlock(0.04f));
         }
     }
 
@@ -166,7 +170,7 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         moving = false;
-        print("moving passe à false");
+        //print("moving passe à false");
         //print("unlock");
     }
 }
