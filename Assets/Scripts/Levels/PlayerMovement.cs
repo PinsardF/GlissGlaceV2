@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -30,6 +31,10 @@ public class PlayerMovement : MonoBehaviour
     //Processing the inputs
     void ProcessInputs()
     {
+        if (Input.GetKey("p"))
+        {
+            SceneManager.LoadScene("Level_Selector");
+        }
         if (!moving)
         {
             //Get the axis of the movement (horizontal or vertical)
@@ -84,7 +89,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
         List<Collider2D> colliders = new List<Collider2D>();
         Physics2D.OverlapCircle(rb.position, 0.52f, new ContactFilter2D(), colliders);
 
