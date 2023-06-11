@@ -16,6 +16,11 @@ public class PlayerMovement : MonoBehaviour
     public Transform characterTransform;
     private string direction;
 
+    private void Start()
+    {
+        print("loaded PlayerMovement script");
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -25,12 +30,12 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-        //if (moving) { print(characterTransform.position); }
     }
 
     //Processing the inputs
     void ProcessInputs()
     {
+        
         if (Input.GetKey("p"))
         {
             SceneManager.LoadScene("Level_Selector");
@@ -95,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
         float positionX = Convert.ToSingle(Math.Round(rb.position.x * 2, MidpointRounding.AwayFromZero) / 2);
         float positionY = Convert.ToSingle(Math.Round(rb.position.y * 2, MidpointRounding.AwayFromZero) / 2);
 
-        print(rb.position);
+        //print(rb.position);
 
         bool blocked = false;
         float contactPosition = -100f;
