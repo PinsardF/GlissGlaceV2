@@ -11,6 +11,7 @@ public class level_script : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         print("loaded level_script");
 
         //We listen for the player to touch the objective

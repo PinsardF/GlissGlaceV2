@@ -35,12 +35,12 @@ public class PlayerMovement : MonoBehaviour
     //Processing the inputs
     void ProcessInputs()
     {
-        
+        //TODO A supprimer pour pas pouvoir revenir sur la map principale alors qu'on est en menu pause ou victoire
         if (Input.GetKey("p"))
         {
             SceneManager.LoadScene("Level_Selector");
         }
-        if (!moving)
+        if (!moving && Time.timeScale != 0)
         {
             //Get the axis of the movement (horizontal or vertical)
             float moveX = Input.GetAxisRaw("Horizontal");
